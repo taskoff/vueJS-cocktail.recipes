@@ -23,14 +23,22 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon+SC&display=swap');
- 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  html {
+    box-sizing: border-box;
+    font-family: 'IM Fell French Canon SC', serif;
+    font-size: 16px;
+  }
   body {
     margin: 0;
     padding: 0;
     background-image: url('../public/img/background_3001.jpg');
     background-size: cover;
-    font-family: 'IM Fell French Canon SC', serif;
-    font-size: 16px;
+    
     /* background: tomato; */
   }
 
