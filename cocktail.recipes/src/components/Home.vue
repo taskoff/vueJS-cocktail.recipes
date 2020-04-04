@@ -3,7 +3,7 @@
  <div class="start-page-container">
      <p class="start-message">You can see all cocktail recipes</p>
      <div class="arrow-container">
-          <p class="arrow">&#8659;</p>
+          <p class="arrow">&#8681;</p>
      </div>
     
      <div class="start-button">
@@ -37,43 +37,49 @@ export default {
 .start-message {
     font-size: 3.5em;
     font-weight: bold;
-    text-shadow: 3px 3px grey;
+    text-shadow: 3px 3px black;
+    color: rgba(128, 125, 128, 1);
     /* color: grey; */
 }
 .start-button {
-    margin-top: 70px;
+    margin-top: 100px;
 }
 .start-button a {
     display: block;
-    color: black;
+    color: white;;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: bold;
     max-width: 40%;
     margin: auto;
-    background-color: rgba(192, 192, 192, 0.8);
-    border-radius: 3px;
+    background-color: rgba(128, 125, 128, 0.8);
+    box-shadow: 3px 3px black;
+    border-radius: 5px;
     padding: 20px 0;
+}
+.start-button a:hover {
+    background-color: rgba(128, 128, 128, 1);
+    color: white;
+    box-shadow: 5px 5px black;
 }
 .arrow-container {
     position: relative;
 }
 .arrow {
-    /* position: absolute; */
-    top: 20px;
-    left: 40%;
-    transform: rotate(90deg);
+    color: rgba(128, 128, 128, 1);
+    text-shadow: 3px 3px black;
     font-size: 5em;
-     animation: arrow 1s infinite;
-    /* animation-duration: 1s;  */
+     animation: arrow 1s infinite 0.5s ease-in-out;
+    
 }
 @keyframes arrow {
     0% {
       transform: translateY(0);
+      
     }
    
     100% {
-       transform: translateY(60px);
+       transform: translateY(70px);
     } 
 }
 
