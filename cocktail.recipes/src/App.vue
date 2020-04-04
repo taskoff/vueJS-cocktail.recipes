@@ -29,17 +29,17 @@ export default {
     box-sizing: inherit;
   }
   html {
+    
+  }
+  body {
     box-sizing: border-box;
     font-family: 'IM Fell French Canon SC', serif;
     font-size: 16px;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    background-image: url('../public/img/background_3001.jpg');
+    background-image: url('../public/img/background_300.jpg');
     background-size: cover;
-    
-    /* background: tomato; */
+    background-position: center;
+    background-repeat: no-repeat;
+     background-attachment: fixed;
   }
 
   #app {
