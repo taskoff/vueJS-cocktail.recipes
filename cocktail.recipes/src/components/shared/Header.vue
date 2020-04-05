@@ -3,6 +3,9 @@
     <nav>
         <ul class="navigation">
             <li>
+                <router-link to="/" exact>HOME</router-link>
+            </li>
+            <li>
                 <router-link to="/list">RECIPES</router-link>
             </li>
             <li>
