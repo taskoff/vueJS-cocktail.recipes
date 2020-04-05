@@ -1,13 +1,10 @@
 <template>
-<div class="site-footer">
- Footer view
-</div>
- 
+  <h2>List view</h2>
 </template>
 
 <script>
 export default {
-    name: 'Footer' 
+name: 'List'
 }
 </script>
 

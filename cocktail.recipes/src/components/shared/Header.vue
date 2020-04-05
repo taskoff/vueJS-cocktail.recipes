@@ -3,7 +3,7 @@
     <nav>
         <ul class="navigation">
             <li>
-                <a href="">RECIPES</a>
+                <router-link to="/list">RECIPES</router-link>
             </li>
             <li>
                 <a href="">ADD RECIPE</a>
