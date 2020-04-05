@@ -9,8 +9,7 @@
                 <router-link to="/list">RECIPES</router-link>
             </li>
             <li>
-                <a href="">ADD RECIPE</a>
-
+                 <router-link to="/add">ADD RECIPE</router-link>
             </li>
             <li>
                 <a href="">LOGIN</a>
