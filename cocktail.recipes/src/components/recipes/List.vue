@@ -10,7 +10,7 @@
                     <h3>Mojito recipe</h3>
                 </div>
                 <div class="details-btn-container">
-                    <a href="">Details</a>
+                    <router-link to="/details">Details</router-link>
                 </div>
             </div>
              <div class="recipe-container">
@@ -21,7 +21,7 @@
                     <h3>Woo Woo</h3>
                 </div>
                 <div class="details-btn-container">
-                    <a href="">Details</a>
+                    <router-link to="/details">Details</router-link>
                 </div>
             </div>
             <div class="recipe-container">
@@ -32,7 +32,7 @@
                     <h3>Piña Colada</h3>
                 </div>
                 <div class="details-btn-container">
-                    <a href="">Details</a>
+                    <router-link to="/details">Details</router-link>
                 </div>
             </div>
             <div class="recipe-container">
@@ -54,7 +54,7 @@
                     <h3>Mojito recipe</h3>
                 </div>
                 <div class="details-btn-container">
-                    <a href="">Details</a>
+                    <router-link to="/details">Details</router-link>
                 </div>
             </div>
         </div>
