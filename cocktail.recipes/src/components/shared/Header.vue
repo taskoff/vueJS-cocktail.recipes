@@ -2,7 +2,7 @@
 <div class="site-navi">
     <nav>
         <ul class="navigation">
-            <li>
+            <li @click="activatePage">
                 <router-link to="/" exact>HOME</router-link>
             </li>
             <li>
@@ -17,6 +17,12 @@
             <li>
                 <router-link to="/register">REGISTER</router-link>
             </li>
+            <li>
+                <router-link to="/profile">PROFILE</router-link>
+            </li>
+            <li>
+                <router-link to="/" exact="">LOGOUT</router-link>
+            </li>
         </ul>
     </nav>
 </div>
@@ -25,7 +31,12 @@
 
 <script>
 export default {
-    name: 'Home' 
+    name: 'Home' ,
+    methods: {
+        activatePage(e) {
+            console.log(e.target)
+        }
+    }
 }
 </script>
 
@@ -52,7 +63,7 @@ export default {
         padding: 0 10px;
     }
 
-    .navigation li:hover {
+    .navigation li a:hover {
         /* border: 1px solid grey; */
         box-shadow: 0 0 2px black;
         background-color: grey;
@@ -60,6 +71,10 @@ export default {
     .navigation li:hover a {
         color: white;
 
+    }
+    .router-link-active {
+        background-color: grey;
+        color: white;
     }
 
 </style>

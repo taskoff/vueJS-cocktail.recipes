@@ -16,14 +16,14 @@
                     <label for="add-ingredient">Ingredients and quantity:</label>
                 </div>
                 <div class="form-input">
-                    <input type="text" v-model="ingredient" id="add-ingredient">
-                     <button @click="ingredientHandler" type="button">Add</button>
+                    <input type="text" v-model="ingredient" id="add-ingredient" placeholder="100ml Milk">
+                     <button @click="ingredientHandler" type="button" class="addBtn">&#10010;</button>
                 </div>
            
             </div>
             <div class="ingredient-list">
                 <ul>
-                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <button @click="deleteIngredient(i)">delete</button></li>
+                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <button @click="deleteIngredient(i)" class="deleteBtn">&#9866;</button></li>
                 </ul>
             </div>
              <div class="form-label-input">
@@ -35,7 +35,7 @@
                  </div>
                 
              </div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Add Recipe" class="addRecipeBtn">
         </form>
           
       </div>
@@ -85,9 +85,11 @@ h2 {
 .add-container {
     max-width: 50%;
     margin: auto;
-    background-color: rgba(192,192,192, 0.8);
+    background-color: rgba(255,204,153, 0.6);
     padding: 20px;
     padding-left: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
 }
 form {
     /* text-align: right; */
@@ -99,6 +101,11 @@ form {
 form input {
     line-height: 2em;
     min-width: 60%;
+    border-radius: 3px;
+}
+form textarea {
+    border-radius: 3px;
+
 }
 form label,
 form ul li {
@@ -112,5 +119,21 @@ form ul li {
 }
 .ingredient-list {
     min-height: 100px;
+}
+.addBtn,
+.deleteBtn {
+    padding: 3px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 2px;
+     font-size: 1em;
+}
+.deleteBtn {
+     font-size: 1em;
+     padding: 0 10px;
+     margin-bottom: 2px;
+}
+.addRecipeBtn {
+
 }
 </style>

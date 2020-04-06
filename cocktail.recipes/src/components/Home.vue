@@ -58,8 +58,8 @@ export default {
     padding: 20px 0;
 }
 .start-button a:hover {
-    background-color: rgba(128, 128, 128, 1);
-    color: white;
+    background-color: rgba(255,204,153, 1);
+    color: black;
     box-shadow: 5px 5px black;
 }
 .arrow-container {
