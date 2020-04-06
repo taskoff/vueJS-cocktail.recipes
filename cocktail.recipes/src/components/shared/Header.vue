@@ -12,10 +12,10 @@
                  <router-link to="/add">ADD RECIPE</router-link>
             </li>
             <li>
-                <a href="">LOGIN</a>
+                <router-link to="/login">LOGIN</router-link>
             </li>
             <li>
-                <a href="">REGISTER</a>
+                <router-link to="/register">REGISTER</router-link>
             </li>
         </ul>
     </nav>
