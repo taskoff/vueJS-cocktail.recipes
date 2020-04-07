@@ -4,27 +4,41 @@
       <h2>Register</h2>
     </div>
     <div class="form-container">
-          <form action="">
+          <form class="reg-form" @submit.prevent="regHandler">
     <div class="form-label-input">
       <label for="email">Email</label>
-      <input type="text" id="email" name="email"  placeholder="Email" 
-        autofocus="">
+      <input type="text" id="email" name="email" v-model="email" @blur="$v.email.$touch" placeholder="Email" >
+      <template v-if="$v.email.$error">
+          <div class="error-input" v-if="!$v.email.required">the email is reqired</div>
+          <div class="error-input" v-else-if="!$v.email.email">the email is invalid</div>
+      </template>
     </div>
  
     <div class="form-label-input">
       <label for="inputUsername">Username</label>
-      <input type="text" id="inputUsername" name="username"  placeholder="Username" 
-        autofocus="">
+      <input type="text" id="inputUsername" name="username" v-model="username" @blur="$v.username.$touch" placeholder="Username" >
+      <template v-if="$v.username.$error">
+          <div class="error-input" v-if="!$v.username.required">the username is reqired</div>
+          <div class="error-input" v-else-if="!$v.username.minLength">the username must by min 3 symbols</div>
+      </template>
     </div>
 
     <div class="form-label-input">
       <label for="inputPassword">Password</label>
-      <input type="password" id="inputPassword" name="password"  placeholder="Password" >
+      <input type="password" id="inputPassword" name="password" v-model="password" @blur="$v.password.$touch" placeholder="Password" >
+       <template v-if="$v.password.$error">
+          <div class="error-input" v-if="!$v.password.required">the Password is required</div>
+          <div class="error-input" v-else-if="!$v.password.minLength">the password must by min 6 symbols</div>
+          <div class="error-input" v-else>password must contain only letters end numbers</div>
+      </template>
     </div>
 
     <div class="form-label-input">
        <label for="inputRePassword">Re-Password</label>
-      <input type="password" id="inputRePassword" name="rePassword"  placeholder="Re-Password">
+      <input type="password" id="inputRePassword" name="rePassword" v-model="rePassword" @blur="$v.rePassword.$touch" placeholder="Re-Password">
+       <template v-if="$v.rePassword.$error">
+          <div class="error-input" v-if="!$v.rePassword.sameAs">the password not match</div>
+      </template>
     </div>
     <div class="reg-btn-container">
          <button type="submit" class="regBtn">Sign Up</button>
@@ -44,8 +58,31 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import {required, email, minLength, sameAs, helpers} from 'vuelidate/lib/validators'
+const passwordCheck = helpers.regex('passwordCheck',/^[a-zA-Z0-9]+$/)
 export default {
-
+  mixins: [validationMixin],
+  data() {
+    return {
+      email: '',
+      username: '',
+      password: '',
+      rePassword: ''
+    }
+  },
+  validations: {
+    email: {required, email},
+    username: {required, minLength: minLength(3)},
+    password: {required, minLength: minLength(6), passwordCheck},
+    rePassword: {sameAs: sameAs('password')}
+  },
+  methods: {
+    regHandler() {
+      this.$v.$touch()
+      console.log(this.$v.password)
+    }
+  }
 }
 </script>
 
@@ -91,6 +128,10 @@ form label {
 .regBtn {
   padding: 5px 10px;
   border-radius: 3px;
+}
+.error-input {
+
+  font-style: italic;
 }
 
 </style>

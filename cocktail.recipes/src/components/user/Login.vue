@@ -2,15 +2,16 @@
   <div class="login-form-view">
     <h2>Login</h2>
     <div class="form-container">
-        <form action="">
+        <form @submit.prevent="submitHandler">
             <div class="form-label-input">
                 <label for="inputUsername">Username</label>
-                <input type="text" id="inputUsername" name="username"  placeholder="Username" autofocus="">
+                <input type="text" id="username" name="username"  v-model="username"  placeholder="Username" >
+                 
             </div>
 
             <div class="form-label-input">
               <label for="inputPassword">Password</label>
-              <input type="password" id="inputPassword" name="password"  placeholder="Password" >
+              <input type="password" id="inputPassword" name="password"  v-model="password" placeholder="Password" >
             </div>
             <div class="log-btn-container">
                 <button type="submit" class="logBtn">Sign In</button>
@@ -26,8 +27,23 @@
 </template>
 
 <script>
-export default {
 
+export default {
+  data() {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    submitHandler() {
+     
+      // if (condition) {
+        
+      // }
+      
+    }
+  }
 }
 </script>
 
