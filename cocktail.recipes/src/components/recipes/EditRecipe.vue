@@ -59,11 +59,11 @@
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
 import {post, get} from '../../auth/requester.js';
-import recipeMixin from '../../mixins/currentRecipeInfo.js'
-import data from '../../mixins/test.js'
+import recipeInfo from '../../mixins/currentRecipeInfo';
+// import data from '../../mixins/test.js'
 
 export default {
-    mixins: [validationMixin, recipeMixin],
+    mixins: [validationMixin, recipeInfo],
     data() {
         return {
             name: '',
@@ -81,7 +81,7 @@ export default {
         methods: { required },
     },
     created() {
-        console.log(data.id)
+        // console.log(data.id)
         this.loadRecipe()
     },
     methods: {
@@ -119,7 +119,9 @@ export default {
             this.methods = '';
         },
         loadRecipe() {
-            get('appdata', `recipes/${data.id}`, 'Kinvey').then(d=>{
+            let id = this.getId
+            console.log(id)
+            get('appdata', `recipes/${id}`, 'Kinvey').then(d=>{
                 
             this.name = d.name;
             this.imageUrl = d.imageUrl;

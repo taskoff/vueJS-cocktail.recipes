@@ -2,10 +2,10 @@
 <div class="site-navi">
     <nav>
         <ul class="navigation">
-            <li @click="activatePage">
+            <li v-if="!isAuth">
                 <router-link to="/" exact v-if="!isAuth">HOME</router-link>
             </li>
-            <li>
+            <li v-if="isAuth">
                 <router-link to="/list">RECIPES</router-link>
             </li>
             <li v-if="isAuth">
@@ -38,11 +38,7 @@ export default {
         }
     },
     
-    methods: {
-        activatePage(e) {
-            console.log(e.target)
-        }
-    }
+    
 }
 </script>
 

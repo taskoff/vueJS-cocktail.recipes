@@ -1,26 +1,15 @@
-const recipeMixin = {
-    
-    data() {
-        return {
-            id: ''
-        }
+let testId = '';
 
+const recipeInfo = {
+    methods: {
+        copyId(i) {
+            testId = i;
+            return testId;
+        }
     },
     computed: {
-        currentReciepId() {
-            return 
-        }
-    },
-    methods: {
-        changeId(id) {
-            this.id = id;
-        }
-    },
-    // watch: {
-    //     id: function(o, n) {
-            
-    //     }
-    // }
+        getId: () => {return testId}
+    }
 }
 
-export default recipeMixin;
+export default recipeInfo;

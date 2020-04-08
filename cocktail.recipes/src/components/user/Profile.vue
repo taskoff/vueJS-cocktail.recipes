@@ -13,26 +13,30 @@
             </div>
             <h3>My recipes:</h3>
             <div class="recipes" >
-                
+                <template v-if="recipes">
                 <ul>
                     <li v-for="r in recipes" :key="r._id">{{r.name}} <button @click="editRecipe(r)">Edit</button> <button>Delete</button> </li>
                 </ul>
+                </template>
+                <template v-else>
+                    <p>Loading....</p>
+                </template>
             </div>
         </div>
   </div>
 </template>
 
 <script>
-import { get } from '../../auth/requester.js';
-import recipeMixin from '../../mixins/currentRecipeInfo.js'
-import data from '../../mixins/test.js'
+// import { get } from '../../auth/requester.js';
+// import data from '../../mixins/test.js'
+import requester from '../../mixins/requester2'
+import recipeInfo from '../../mixins/currentRecipeInfo'
 
 export default {
-    mixins: [recipeMixin],
-
+    mixins: [requester, recipeInfo],
     data() {
         return {
-            recipes: ['a', 'b']
+            recipes: null
         }
     },
     created() {
@@ -40,14 +44,15 @@ export default {
     },
     methods: {
         getRecipes() {
-            get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
+            this.get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
                     .then(d=>{
                     console.log(d)
-                    this.recipes = d})
+                    this.recipes = d.length>0 ? d : 'There is no recieps'})
         },
         editRecipe(r) {
             // console.log(this.id)
-            data.id = r._id
+            // data.id = r._id
+            this.copyId(r._id)
             this.$router.push(`edit`);
         }
     }

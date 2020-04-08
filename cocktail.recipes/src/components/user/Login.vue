@@ -27,9 +27,11 @@
 </template>
 
 <script>
-import {post} from '../../auth/requester.js';
+// import {post} from '../../auth/requester.js';
+import requester from '../../mixins/requester2'
 
 export default {
+  mixins: [requester],
   data() {
     return {
       username: '',
@@ -42,7 +44,7 @@ export default {
       const password = this.password;
       this.username = '';
       this.password = '';
-     post('user', 'login', {username, password }, 'Basic').then(data=>{
+    this.post('user', 'login', {username, password }, 'Basic').then(data=>{
         console.log(data);
         sessionStorage.setItem('authtoken', data._kmd.authtoken);
         sessionStorage.setItem('username', data.username);

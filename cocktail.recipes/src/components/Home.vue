@@ -7,7 +7,7 @@
      </div>
     
      <div class="start-button">
-         <router-link to="/list">HERE</router-link>
+         <router-link to="/login">LOGIN</router-link>
      </div>
     
  </div>
