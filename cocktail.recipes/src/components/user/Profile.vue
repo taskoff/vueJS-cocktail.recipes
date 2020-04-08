@@ -11,13 +11,45 @@
                 <p class="user-name">Username:</p>
                 <p class="email">Email:</p>
             </div>
+            <h3>My recipes:</h3>
+            <div class="recipes" >
+                
+                <ul>
+                    <li v-for="r in recipes" :key="r._id">{{r.name}} <button @click="editRecipe(r)">Edit</button> <button>Delete</button> </li>
+                </ul>
+            </div>
         </div>
   </div>
 </template>
 
 <script>
-export default {
+import { get } from '../../auth/requester.js';
+import recipeMixin from '../../mixins/currentRecipeInfo.js'
 
+export default {
+    mixins: [recipeMixin],
+
+    data() {
+        return {
+            recipes: ['a', 'b']
+        }
+    },
+    created() {
+        this.getRecipes()
+    },
+    methods: {
+        getRecipes() {
+            get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
+                    .then(d=>{
+                    console.log(d)
+                    this.recipes = d})
+        },
+        editRecipe(r) {
+            this.currentreciepId = r._id
+            // console.log(this.id)
+            this.$router.push(`edit`);
+        }
+    }
 }
 </script>
 

@@ -4,6 +4,7 @@ import AddRecipe from './components/recipes/AddRecipe';
 import Register from './components/user/Register';
 import Login from './components/user/Login';
 import Profile from './components/user/Profile';
+import EditRecipe from './components/recipes/EditRecipe';
 
 import Home from './components/Home.vue';
 
@@ -21,6 +22,10 @@ const routes = [
        
         component: Details,
         
+    },
+    {
+        path: '/edit',
+        component: EditRecipe
     },
     {
         path: '/add',

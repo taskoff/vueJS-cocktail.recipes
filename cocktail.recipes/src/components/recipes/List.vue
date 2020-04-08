@@ -87,7 +87,6 @@ created() {
 methods: {
     getList() {
        get('appdata', 'recipes', 'Kinvey').then(d=>{
-             console.log(d);
              this.recipes = d;
 
          })
