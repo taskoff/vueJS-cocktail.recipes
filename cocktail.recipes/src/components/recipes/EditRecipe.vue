@@ -24,7 +24,7 @@
                     <label for="add-ingredient">Ingredients and quantity:</label>
                 </div>
                 <div class="form-input">
-                    <input type="text" v-model="ingredient" id="add-ingredient" placeholder="100ml Milk">
+                    <input type="text" v-model="ingredient" id="add-ingredient" >
                      <button @click="ingredientHandler" type="button" class="addBtn">&#10010;</button>
                 </div>
            
