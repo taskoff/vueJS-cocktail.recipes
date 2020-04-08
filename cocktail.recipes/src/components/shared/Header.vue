@@ -3,25 +3,25 @@
     <nav>
         <ul class="navigation">
             <li @click="activatePage">
-                <router-link to="/" exact>HOME</router-link>
+                <router-link to="/" exact v-if="!isAuth">HOME</router-link>
             </li>
             <li>
                 <router-link to="/list">RECIPES</router-link>
             </li>
-            <li>
-                 <router-link to="/add">ADD RECIPE</router-link>
+            <li v-if="isAuth">
+                 <router-link to="/add" >ADD RECIPE</router-link>
             </li>
-            <li>
-                <router-link to="/login">LOGIN</router-link>
+            <li v-if="!isAuth">
+                <router-link to="/login" >LOGIN</router-link>
             </li>
-            <li>
-                <router-link to="/register">REGISTER</router-link>
+            <li v-if="!isAuth">
+                <router-link to="/register" >REGISTER</router-link>
             </li>
-            <li>
-                <router-link to="/profile">PROFILE</router-link>
+            <li v-if="isAuth">
+                <router-link to="/profile" >PROFILE</router-link>
             </li>
-            <li>
-                <router-link to="/" exact="">LOGOUT</router-link>
+            <li v-if="isAuth">
+                <router-link to="/" exact="" >LOGOUT</router-link>
             </li>
         </ul>
     </nav>
@@ -32,6 +32,12 @@
 <script>
 export default {
     name: 'Home' ,
+    props: {
+        isAuth: {
+            type: Boolean
+        }
+    },
+    
     methods: {
         activatePage(e) {
             console.log(e.target)

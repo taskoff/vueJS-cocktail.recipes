@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <router-view></router-view>
+    <app-header :isAuth = isAuth></app-header>
+    <router-view @isAuth="isAuth = $event" :isAuth = isAuth></router-view>
     <app-footer></app-footer>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
     // AppHome,
     AppHeader,
     AppFooter
+  },
+  data() {
+    return {
+      isAuth: false
+    }
   }
 }
 </script>

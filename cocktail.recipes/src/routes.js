@@ -18,7 +18,9 @@ const routes = [
     },
     {
         path: '/details',
-        component: Details
+       
+        component: Details,
+        
     },
     {
         path: '/add',

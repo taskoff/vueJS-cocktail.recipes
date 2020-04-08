@@ -5,6 +5,14 @@
          <form @submit.prevent="submitHandler">
              <div class="form-label-input">
                  <div class="form-label">
+                    <label for="name">Name:</label>
+                 </div>
+                 <div class="form-input">
+                     <input type="text" v-model="name" id="name" placeholder="Name">
+                 </div>
+             </div>
+             <div class="form-label-input">
+                 <div class="form-label">
                     <label for="image-url">Image URL:</label>
                  </div>
                  <div class="form-input">
@@ -26,36 +34,53 @@
                 <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <button @click="deleteIngredient(i)" class="deleteBtn">&#9866;</button></li>
                 </ul>
             </div>
-             <div class="form-label-input">
+            <div class="form-label-input">
                  <div class="form-label">
                     <label for="methods">Methods:</label>
                  </div>
                  <div class="form-textarea">
                      <textarea type="text" v-model="methods" id="methods" rows="8" cols="55"></textarea>
                  </div>
-                
+            <template v-if="$v.$error">
+                <div class="error-input" v-if="!$v.name.required">the name is required</div>
+                <div class="error-input" v-if="!$v.imageUrl.required">the image URL is required</div>
+                <div class="error-input" v-if="!$v.methods.required">the methods are required</div>
+            </template>
+            <div class="error-input" :class="{hiden: noIngredients, show: !noIngredients}" >ingredients are required</div>
              </div>
             <input type="submit" value="Add Recipe" class="addRecipeBtn">
         </form>
-          
+        
       </div>
   </div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import {required} from 'vuelidate/lib/validators';
+import {post} from '../../auth/requester.js';
 export default {
+    mixins: [validationMixin],
     data() {
         return {
+            name: '',
             ingredient: '',
-            ingredients:['a', 'b'],
+            ingredients:[],
             imageUrl:'',
-            methods: ''
+            methods: '',
+            noIngredients: true
         }
+    },
+    validations: {
+        name: {required},
+        imageUrl: { required },
+        methods: { required },
     },
     methods: {
         ingredientHandler() {
             if (this.ingredient) {
                 this.ingredients.push(this.ingredient);
+                this.noIngredients = true;
             }
             
             this.ingredient = '';
@@ -64,14 +89,39 @@ export default {
             this.ingredients.splice(i, 1);
         },
         submitHandler() {
-            console.log(this.ingredients)
-            console.log(this.imageUrl)
-            console.log(this.methods)
+            this.noIngredients = this.ingredients.length === 0 ? false : true;
+            this.$v.$touch()
+            if(this.$v.$invalid || this.noIngredients === false) {
+                console.log(this.noIngredients)
+                console.log(this.ingredients)
+
+                console.log('fuck')
+                return
+            }
+            const data = {
+                name: this.name,
+                imageUrl: this.imageUrl,
+                ingredients: this.ingredients,
+                methods: this.methods
+            }
+            
+            post('appdata', 'recipes', data, 'Kinvey').then(d=>{
+                console.log(d)
+            })
+
+            this.name ='';
+            this.imageUrl = '';
+            this.ingredients = [];
+            this.methods = '';
+            // console.log(this.ingredients)
+            // console.log(this.imageUrl)
+            // console.log(this.methods)
 
 
         }
         
     }
+    
     
 }
 </script>
@@ -135,5 +185,14 @@ form ul li {
 }
 .addRecipeBtn {
 
+}
+.hiden {
+    display: none;
+}
+.show {
+    display: block;
+}
+.error-input {
+    font-style: italic;
 }
 </style>

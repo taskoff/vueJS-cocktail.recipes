@@ -29,7 +29,17 @@
 
 <script>
 export default {
-
+    // props: {
+    //     isAuth: {
+    //         type: Boolean
+    //     }
+    // },
+    // beforRouteEnter(to, from, next) {
+    //     console.log(this.isAuth)
+    //         if (!isAuth) {
+    //             next('/login')
+    //         }
+    //     }
 }
 </script>
 

@@ -2,18 +2,18 @@
     <div class="list-vew-container">
         <h2>All Recipes</h2>
         <div class="all-recipes-container">
-            <div class="recipe-container">
+            <div class="recipe-container" v-for="r in recipes" :key="r._id">
                 <div class="img-container">
-                    <img src="https://www.liquor.com/thmb/VMoOrrQzOV00AY3rgSK6XxOR0EE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__liquor__2018__09__04153106__mojito-720x720-recipe-a55b114fc99c4a64b38c9ef6d1660e20.jpg" alt="Img">
+                    <img  :src="r.imageUrl" alt="Img">
                 </div>
                 <div class="recipe-title">
-                    <h3>Mojito recipe</h3>
+                    <h3>{{r.name}}</h3>
                 </div>
                 <div class="details-btn-container">
                     <router-link to="/details">Details</router-link>
                 </div>
             </div>
-             <div class="recipe-container">
+             <!-- <div class="recipe-container">
                 <div class="img-container">
                     <img src="https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2018/06/440x400-woo-woo.jpg?itok=U4xGgxZE" alt="Img">
                 </div>
@@ -56,17 +56,46 @@
                 <div class="details-btn-container">
                     <router-link to="/details">Details</router-link>
                 </div>
-            </div>
+            </div> -->
         </div>
+       
     </div>
   
 
 </template>
 
 <script>
+import {get} from '../../auth/requester.js'
+
 export default {
-name: 'List'
+name: 'List',
+props: {
+    isAuth: {
+        type: Boolean
+        }
+},
+data() {
+    return {
+        imageUrl: '',
+        name: '',
+        recipes: null
+    }
+},
+created() {
+    this.getList()
+},
+methods: {
+    getList() {
+       get('appdata', 'recipes', 'Kinvey').then(d=>{
+             console.log(d);
+             this.recipes = d;
+
+         })
+    }
 }
+
+}
+// console.log(this.isAuth)
 </script>
 
 <style scoped>

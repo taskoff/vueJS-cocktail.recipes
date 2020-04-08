@@ -7,7 +7,7 @@
      </div>
     
      <div class="start-button">
-         <a href="">HERE</a>
+         <router-link to="/list">HERE</router-link>
      </div>
     
  </div>

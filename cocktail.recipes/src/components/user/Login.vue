@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import {post} from '../../auth/requester.js';
 
 export default {
   data() {
@@ -37,10 +38,20 @@ export default {
   },
   methods: {
     submitHandler() {
-     
-      // if (condition) {
+      const username = this.username;
+      const password = this.password;
+      this.username = '';
+      this.password = '';
+     post('user', 'login', {username, password }, 'Basic').then(data=>{
+        console.log(data);
+        sessionStorage.setItem('authtoken', data._kmd.authtoken);
+        sessionStorage.setItem('username', data.username);
+        sessionStorage.setItem('userId', data._id);
+        this.$emit('isAuth', true);
+        this.$router.push('list');
         
-      // }
+        })
+     
       
     }
   }
