@@ -15,7 +15,12 @@ const recipeMixin = {
         changeId(id) {
             this.id = id;
         }
-    }
+    },
+    // watch: {
+    //     id: function(o, n) {
+            
+    //     }
+    // }
 }
 
 export default recipeMixin;

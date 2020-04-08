@@ -58,8 +58,10 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
-import {post} from '../../auth/requester.js';
+import {post, get} from '../../auth/requester.js';
 import recipeMixin from '../../mixins/currentRecipeInfo.js'
+import data from '../../mixins/test.js'
+
 export default {
     mixins: [validationMixin, recipeMixin],
     data() {
@@ -79,7 +81,8 @@ export default {
         methods: { required },
     },
     created() {
-        console.log(this.currentreciepId)
+        console.log(data.id)
+        this.loadRecipe()
     },
     methods: {
         ingredientHandler() {
@@ -97,10 +100,6 @@ export default {
             this.noIngredients = this.ingredients.length === 0 ? false : true;
             this.$v.$touch()
             if(this.$v.$invalid || this.noIngredients === false) {
-                console.log(this.noIngredients)
-                console.log(this.ingredients)
-
-                console.log('fuck')
                 return
             }
             const data = {
@@ -119,9 +118,15 @@ export default {
             this.ingredients = [];
             this.methods = '';
         },
-        // loadRecipe() {
-        //     get('appdata', `recipes/${id}`, 'Kinvey')
-        // }
+        loadRecipe() {
+            get('appdata', `recipes/${data.id}`, 'Kinvey').then(d=>{
+                
+            this.name = d.name;
+            this.imageUrl = d.imageUrl;
+            this.ingredients = d.ingredients;
+            this.methods = d.methods;
+            })
+        }
         
     }
     

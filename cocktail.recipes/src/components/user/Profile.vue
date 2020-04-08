@@ -25,6 +25,7 @@
 <script>
 import { get } from '../../auth/requester.js';
 import recipeMixin from '../../mixins/currentRecipeInfo.js'
+import data from '../../mixins/test.js'
 
 export default {
     mixins: [recipeMixin],
@@ -45,8 +46,8 @@ export default {
                     this.recipes = d})
         },
         editRecipe(r) {
-            this.currentreciepId = r._id
             // console.log(this.id)
+            data.id = r._id
             this.$router.push(`edit`);
         }
     }
