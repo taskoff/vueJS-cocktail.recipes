@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import requester from '../../mixins/requester2'
+import requester from '../../mixins/requester2';
+import service from '../../mixins/test.js'
 
 export default {
   mixins: [requester],
@@ -45,10 +46,11 @@ export default {
       this.username = '';
       this.password = '';
     this.post('user', 'login', {username, password }, 'Basic').then(data=>{
-        console.log(data);
+        // console.log(data);
         
         this.addSessonStorageUserInfo(data);
         this.$emit('isAuth', true);
+        service.isLogin = true;
         this.$router.push('list');
         
         })

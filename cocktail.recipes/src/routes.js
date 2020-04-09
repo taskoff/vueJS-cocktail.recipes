@@ -5,43 +5,92 @@ import Register from './components/user/Register';
 import Login from './components/user/Login';
 import Profile from './components/user/Profile';
 import EditRecipe from './components/recipes/EditRecipe';
+import service from './mixins/test.js'
+
 
 import Home from './components/Home.vue';
 
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
+        beforeEnter: (to, from, next) => {
+            if (service.isLogin) {
+                next('/list')
+            }
+            next()
+          }
     },
     {
         path: '/list',
-        component: List
+        component: List,
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/login')
+            }
+            next()
+          }
     },
     {
         path: '/details/:id',
         name: 'details',
         component: Details,
-        
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/login')
+            }
+            next()
+          }
     },
     {
         path: '/edit/:id',
-        component: EditRecipe
+        component: EditRecipe,
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/login')
+            }
+            next()
+          }
     },
     {
         path: '/add',
-        component: AddRecipe
+        component: AddRecipe,
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/login')
+            }
+            next()
+          }
     },
     {
         path: '/register',
-        component: Register
+        component: Register,
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/login')
+            }
+            next()
+          }
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        beforeEnter: (to, from, next) => {
+            if (service.isLogin) {
+                next('/list')
+            }
+            next()
+          }
     },
     {
         path: '/profile',
-        component: Profile
+        component: Profile,
+        beforeEnter: (to, from, next) => {
+            if (!service.isLogin) {
+                next('/list')
+            }
+            next()
+          }
     }
 ]
 

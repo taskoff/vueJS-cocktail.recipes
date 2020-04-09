@@ -89,7 +89,7 @@ export default {
       const email = this.email;
       this.$v.$touch()
       this.post('user','',{username, password, email}, 'Basic').then(d=>{
-        console.log(d);
+        // console.log(d);
         this.$emit('isAuth', true);
         this.addSessonStorageUserInfo(d);
         this.$router.push({path: 'List'});

@@ -13,8 +13,8 @@ import AppFooter from './components/shared/Footer.vue';
 
 export default {
   name: 'App',
+  // mixins: [service],
   components: {
-    // AppHome,
     AppHeader,
     AppFooter
   },
@@ -22,7 +22,9 @@ export default {
     return {
       isAuth: false,
     }
-  }
+  },
+  
+  
 }
 </script>
 

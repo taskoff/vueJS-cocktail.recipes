@@ -135,9 +135,7 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 0 5px black;
 }
-form {
-    /* text-align: right; */
-}
+
 .form-label-input {
     padding: 10px 0;
     
@@ -177,9 +175,7 @@ form ul li {
      padding: 0 10px;
      margin-bottom: 2px;
 }
-.addRecipeBtn {
 
-}
 .hiden {
     display: none;
 }
