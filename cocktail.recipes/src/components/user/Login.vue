@@ -46,9 +46,10 @@ export default {
       this.password = '';
     this.post('user', 'login', {username, password }, 'Basic').then(data=>{
         console.log(data);
-        sessionStorage.setItem('authtoken', data._kmd.authtoken);
-        sessionStorage.setItem('username', data.username);
-        sessionStorage.setItem('userId', data._id);
+        // sessionStorage.setItem('authtoken', data._kmd.authtoken);
+        // sessionStorage.setItem('username', data.username);
+        // sessionStorage.setItem('userId', data._id);
+        this.addSessonStorageUserInfo(data);
         this.$emit('isAuth', true);
         this.$router.push('list');
         

@@ -10,7 +10,7 @@
                     <h3>{{r.name}}</h3>
                 </div>
                 <div class="details-btn-container">
-                    <router-link to="/details">Details</router-link>
+                    <router-link :to="r | editLink">Details</router-link>
                 </div>
             </div>
              <!-- <div class="recipe-container">
@@ -65,10 +65,12 @@
 </template>
 
 <script>
-import {get} from '../../auth/requester.js'
+// import {get} from '../../auth/requester.js';
+import requester from '../../mixins/requester2' 
 
 export default {
 name: 'List',
+mixins: [requester],
 props: {
     isAuth: {
         type: Boolean
@@ -86,10 +88,15 @@ created() {
 },
 methods: {
     getList() {
-       get('appdata', 'recipes', 'Kinvey').then(d=>{
+       this.get('appdata', 'recipes', 'Kinvey').then(d=>{
              this.recipes = d;
 
          })
+    }
+},
+filters: {
+    editLink(r) {
+        return `/details/${r._id}`
     }
 }
 

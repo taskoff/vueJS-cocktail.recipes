@@ -65,6 +65,12 @@ const requester = {
         del(kinveyModul, endPoint, type) {
             const headers = this.makeHeaders('DELETE', type);
             return this.fetchData(kinveyModul, endPoint, headers)
+        },
+
+        addSessonStorageUserInfo(data) {
+            sessionStorage.setItem('authtoken', data._kmd.authtoken);
+            sessionStorage.setItem('username', data.username);
+            sessionStorage.setItem('userId', data._id);
         }
     }
 }
