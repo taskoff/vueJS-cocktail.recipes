@@ -6,7 +6,7 @@ import Login from './components/user/Login';
 import Profile from './components/user/Profile';
 import EditRecipe from './components/recipes/EditRecipe';
 import service from './mixins/test.js'
-
+import NotFound from './components/NotFound';
 
 import Home from './components/Home.vue';
 
@@ -91,7 +91,12 @@ const routes = [
             }
             next()
           }
+    },
+    {
+        path: '*',
+        component: NotFound
     }
+
 ]
 
 export default routes;
