@@ -58,12 +58,11 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
-import {post, get} from '../../auth/requester.js';
 import recipeInfo from '../../mixins/currentRecipeInfo';
-// import data from '../../mixins/test.js'
+import requester from '../../mixins/requester2'
 
 export default {
-    mixins: [validationMixin, recipeInfo],
+    mixins: [validationMixin, recipeInfo, requester],
     data() {
         return {
             name: '',
@@ -81,7 +80,6 @@ export default {
         methods: { required },
     },
     created() {
-        // console.log(data.id)
         this.loadRecipe()
     },
     methods: {
@@ -108,20 +106,23 @@ export default {
                 ingredients: this.ingredients,
                 methods: this.methods
             }
+            let id = this.$route.params.id;
             
-            post('appdata', 'recipes', data, 'Kinvey').then(d=>{
-                console.log(d)
+            this.put('appdata', `recipes/${id}`, data, 'Kinvey').then(d=>{
+                console.log(d);
+                this.$router.push(`list`);
+
             })
 
             this.name ='';
             this.imageUrl = '';
             this.ingredients = [];
-            this.methods = '';
+            // this.methods = '';
         },
         loadRecipe() {
-            let id = this.getId
+            let id = this.$route.params.id
             console.log(id)
-            get('appdata', `recipes/${id}`, 'Kinvey').then(d=>{
+            this.get('appdata', `recipes/${id}`, 'Kinvey').then(d=>{
                 
             this.name = d.name;
             this.imageUrl = d.imageUrl;

@@ -15,7 +15,7 @@
             <div class="recipes" >
                 <template v-if="recipes">
                 <ul>
-                    <li v-for="r in recipes" :key="r._id">{{r.name}} <button @click="editRecipe(r)">Edit</button> <button>Delete</button> </li>
+                    <li v-for="r in recipes" :key="r._id">{{r.name}} <button :class="{hiden: !showBtn}" @click="editRecipe(r)">Edit</button> <button :class="{hiden: !showBtn}" @click="deleteRecipe(r)">Delete</button> </li>
                 </ul>
                 </template>
                 <template v-else>
@@ -27,8 +27,6 @@
 </template>
 
 <script>
-// import { get } from '../../auth/requester.js';
-// import data from '../../mixins/test.js'
 import requester from '../../mixins/requester2'
 import recipeInfo from '../../mixins/currentRecipeInfo'
 
@@ -36,7 +34,8 @@ export default {
     mixins: [requester, recipeInfo],
     data() {
         return {
-            recipes: null
+            recipes: null,
+            showBtn: true
         }
     },
     created() {
@@ -47,13 +46,21 @@ export default {
             this.get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
                     .then(d=>{
                     console.log(d)
-                    this.recipes = d.length>0 ? d : 'There is no recieps'})
+                    if (d.length>0) {
+                        this.recipes = d;
+                    } else {
+                        this.showBtn = false;
+                        this.recipes = [{name:'There is no recieps'}]
+                    }
+                    })
         },
         editRecipe(r) {
-            // console.log(this.id)
-            // data.id = r._id
-            this.copyId(r._id)
-            this.$router.push(`edit`);
+            this.$router.push(`edit/${r._id}`);
+        },
+        deleteRecipe(r) {
+            this.del('appdata', `recipes/${r._id}`, 'Kinvey').then(d=>{
+                console.log(d);
+                this.getRecipes()})
         }
     }
 }
@@ -85,5 +92,8 @@ img {
 }
 .user-info p {
     padding: 10px 0;
+}
+.hiden {
+    display: none;
 }
 </style>

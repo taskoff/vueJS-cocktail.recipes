@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header :isAuth = isAuth></app-header>
+    <app-header :isAuth = isAuth @changeIsAuth="isAuth = $event"></app-header>
     <router-view @isAuth="isAuth = $event" :isAuth = isAuth></router-view>
     <app-footer></app-footer>
   </div>

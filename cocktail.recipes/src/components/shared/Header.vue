@@ -3,7 +3,7 @@
     <nav>
         <ul class="navigation">
             <li v-if="!isAuth">
-                <router-link to="/" exact v-if="!isAuth">HOME</router-link>
+                <router-link to="/" exact >HOME</router-link>
             </li>
             <li v-if="isAuth">
                 <router-link to="/list">RECIPES</router-link>
@@ -20,8 +20,8 @@
             <li v-if="isAuth">
                 <router-link to="/profile" >PROFILE</router-link>
             </li>
-            <li v-if="isAuth">
-                <router-link to="/" exact="" >LOGOUT</router-link>
+            <li v-if="isAuth" @click="userLogout">
+                <router-link to="/" exact=""  >LOGOUT</router-link>
             </li>
         </ul>
     </nav>
@@ -30,13 +30,27 @@
 </template>
 
 <script>
+import requester from '../../mixins/requester2'
+
 export default {
     name: 'Home' ,
+    mixins: [requester],
     props: {
         isAuth: {
             type: Boolean
         }
     },
+    methods: {
+        userLogout() {
+            console.log('fuck')
+            this.post('user', '_logout', {}, 'Kinvey')
+            .then(data=>{
+                sessionStorage.clear();
+                console.log(data);
+                this.$emit('changeIsAuth', false)
+            }).catch(err=>console.log(err))
+        }
+    }
     
     
 }
