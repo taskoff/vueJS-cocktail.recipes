@@ -92,10 +92,6 @@ export default {
             this.noIngredients = this.ingredients.length === 0 ? false : true;
             this.$v.$touch()
             if(this.$v.$invalid || this.noIngredients === false) {
-                console.log(this.noIngredients)
-                console.log(this.ingredients)
-
-                console.log('fuck')
                 return
             }
             const data = {
@@ -107,16 +103,13 @@ export default {
             
             post('appdata', 'recipes', data, 'Kinvey').then(d=>{
                 console.log(d)
+                 this.$router.push(`details/${d._id}`);
             })
 
             this.name ='';
             this.imageUrl = '';
             this.ingredients = [];
             this.methods = '';
-            // console.log(this.ingredients)
-            // console.log(this.imageUrl)
-            // console.log(this.methods)
-
 
         }
         

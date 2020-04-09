@@ -89,7 +89,7 @@ export default {
       this.post('user','',{username, password, email}, 'Basic').then(d=>{
         console.log(d);
         this.$emit('isAuth', true);
-        this.$router.push('list');
+        this.$router.push({path: 'List'});
         })
     }
   }

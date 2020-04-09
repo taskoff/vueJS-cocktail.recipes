@@ -109,15 +109,16 @@ export default {
             let id = this.$route.params.id;
             
             this.put('appdata', `recipes/${id}`, data, 'Kinvey').then(d=>{
-                console.log(d);
-                this.$router.push(`list`);
-
+                let id = d._id
+                this.$router.push({ path: `/details/${id}` }) 
             })
+
 
             this.name ='';
             this.imageUrl = '';
             this.ingredients = [];
             // this.methods = '';
+            
         },
         loadRecipe() {
             let id = this.$route.params.id
