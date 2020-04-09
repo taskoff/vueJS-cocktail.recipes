@@ -1,3 +1,6 @@
+cocktail recipes project
+kynvey database
+
 # cocktail.recipes
 
 ## Project setup
