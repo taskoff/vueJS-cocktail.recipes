@@ -81,6 +81,9 @@ export default {
   },
   methods: {
     regHandler() {
+       if(this.$v.$invalid) {
+                return
+            }
       const username = this.username;
       const password = this.password;
       const email = this.email;
