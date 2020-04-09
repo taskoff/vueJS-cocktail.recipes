@@ -27,7 +27,6 @@
 </template>
 
 <script>
-// import {post} from '../../auth/requester.js';
 import requester from '../../mixins/requester2'
 
 export default {

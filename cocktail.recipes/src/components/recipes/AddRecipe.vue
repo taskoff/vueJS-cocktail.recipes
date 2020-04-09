@@ -58,9 +58,10 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
-import {post} from '../../auth/requester.js';
+import requester from '../../mixins/requester2'
+
 export default {
-    mixins: [validationMixin],
+    mixins: [validationMixin, requester],
     data() {
         return {
             name: '',
@@ -101,7 +102,7 @@ export default {
                 methods: this.methods
             }
             
-            post('appdata', 'recipes', data, 'Kinvey').then(d=>{
+            this.post('appdata', 'recipes', data, 'Kinvey').then(d=>{
                 console.log(d)
                  this.$router.push(`details/${d._id}`);
             })

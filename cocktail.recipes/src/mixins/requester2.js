@@ -71,6 +71,7 @@ const requester = {
             sessionStorage.setItem('authtoken', data._kmd.authtoken);
             sessionStorage.setItem('username', data.username);
             sessionStorage.setItem('userId', data._id);
+            sessionStorage.setItem('email', data.email);
         }
     }
 }

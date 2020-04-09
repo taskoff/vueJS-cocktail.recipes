@@ -65,7 +65,6 @@
 </template>
 
 <script>
-// import {get} from '../../auth/requester.js';
 import requester from '../../mixins/requester2' 
 
 export default {

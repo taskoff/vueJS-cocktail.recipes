@@ -8,8 +8,8 @@
             </div>
 
             <div class="user-info">
-                <p class="user-name">Username:</p>
-                <p class="email">Email:</p>
+                <p class="user-name">Username:{{username}}</p>
+                <p class="email">Email:{{email}}</p>
             </div>
             <h3>My recipes:</h3>
             <div class="recipes" >
@@ -28,12 +28,13 @@
 
 <script>
 import requester from '../../mixins/requester2'
-import recipeInfo from '../../mixins/currentRecipeInfo'
 
 export default {
-    mixins: [requester, recipeInfo],
+    mixins: [requester],
     data() {
         return {
+            username: sessionStorage.getItem('username'),
+            email: sessionStorage.getItem('email'),
             recipes: null,
             showBtn: true
         }
@@ -46,11 +47,12 @@ export default {
             this.get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
                     .then(d=>{
                     console.log(d)
+                   
                     if (d.length>0) {
                         this.recipes = d;
                     } else {
                         this.showBtn = false;
-                        this.recipes = [{name:'There is no recieps'}]
+                        this.recipes = [{name:'There is no recipes'}]
                     }
                     })
         },

@@ -42,7 +42,6 @@ export default {
     },
     methods: {
         userLogout() {
-            console.log('fuck')
             this.post('user', '_logout', {}, 'Kinvey')
             .then(data=>{
                 sessionStorage.clear();

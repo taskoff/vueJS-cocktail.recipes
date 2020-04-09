@@ -58,11 +58,10 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
-import recipeInfo from '../../mixins/currentRecipeInfo';
 import requester from '../../mixins/requester2'
 
 export default {
-    mixins: [validationMixin, recipeInfo, requester],
+    mixins: [validationMixin, requester],
     data() {
         return {
             name: '',

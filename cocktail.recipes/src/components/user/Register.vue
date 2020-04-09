@@ -60,7 +60,6 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required, email, minLength, sameAs, helpers} from 'vuelidate/lib/validators';
-// import {post} from '../../auth/requester.js'
 import requester from '../../mixins/requester2'
 const passwordCheck = helpers.regex('passwordCheck',/^[a-zA-Z0-9]+$/)
 export default {
@@ -89,6 +88,7 @@ export default {
       this.post('user','',{username, password, email}, 'Basic').then(d=>{
         console.log(d);
         this.$emit('isAuth', true);
+        this.addSessonStorageUserInfo(d);
         this.$router.push({path: 'List'});
         })
     }
