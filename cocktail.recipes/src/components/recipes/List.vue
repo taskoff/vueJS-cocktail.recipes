@@ -30,11 +30,11 @@ import requester from '../../mixins/requester2'
 export default {
 name: 'List',
 mixins: [requester],
-props: {
-    isAuth: {
-        type: Boolean
-        }
-},
+// props: {
+//     isAuth: {
+//         type: Boolean
+//         }
+// },
 data() {
     return {
         imageUrl: '',
@@ -97,7 +97,7 @@ h2 {
 }
 .img-container {
 position: relative;
-min-width: 295px;
+min-width: 290px;
 
 overflow: hidden;
 border-radius: 5px;

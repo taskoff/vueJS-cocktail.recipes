@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header :isAuth = isAuth @changeIsAuth="isAuth = $event"></app-header>
-    <router-view @isAuth="isAuth = $event" :isAuth = isAuth></router-view>
+    <router-view @isAuth="isAuth = $event" ></router-view>
     <app-footer></app-footer>
   
   </div>
