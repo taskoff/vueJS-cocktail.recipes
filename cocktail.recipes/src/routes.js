@@ -27,7 +27,6 @@ const routes = [
     },
     {
         path: '/details/:id',
-        name: 'details',
         component: Details,
         beforeEnter: (to, from, next) => {
             if (!service.isLogin) {
@@ -60,8 +59,8 @@ const routes = [
         path: '/register',
         component: Register,
         beforeEnter: (to, from, next) => {
-            if (!service.isLogin) {
-                next('/login')
+            if (service.isLogin) {
+                next('/list')
             }
             next()
           }
@@ -69,12 +68,7 @@ const routes = [
     {
         path: '/login',
         component: Login,
-        beforeEnter: (to, from, next) => {
-            if (service.isLogin) {
-                next('/list')
-            }
-            next()
-          }
+        
     },
     {
         path: '/profile',

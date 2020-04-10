@@ -63,7 +63,8 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required, email, minLength, sameAs, helpers} from 'vuelidate/lib/validators';
-import requester from '../../mixins/requester2'
+import requester from '../../mixins/requester2';
+import service from '../../mixins/test.js';
 const passwordCheck = helpers.regex('passwordCheck',/^[a-zA-Z0-9]+$/)
 export default {
   mixins: [validationMixin, requester],
@@ -85,25 +86,51 @@ export default {
   },
   methods: {
     regHandler() {
+      // this.$v.$touch()
        if(this.$v.$invalid) {
                 return
             }
       const username = this.username;
       const password = this.password;
       const email = this.email;
-      this.$v.$touch()
-      this.post('user','',{username, password, email}, 'Basic').then(d=>{
-        // console.log(d);
+      
+
+      this.post('user','',{username, password, email}, 'Basic')
+      .then(e=> {if (!e.ok) {
+                console.log(e);
+                if (e.status === 409) {
+                  alert('This user exist!');
+                } else {
+                   this.$router.push('*');
+                }
+               
+                throw new Error(e.statusText);
+            }
+            return e;})
+       .then(this.serializeData)
+      .then(d=>{
         this.$emit('isAuth', true);
         this.addSessonStorageUserInfo(d);
+        service.isLogin = true;
         this.$router.push({path: 'List'});
-        }).finally(()=>{this.isLoading = false})
+        })
+      .finally(()=>{
+          this.isLoading = false
+          this.email = '';
+          this.username = '';
+          this.password = '';
+          this.rePassword = '';})
+
+
+      
     }
   }
 }
 </script>
 
 <style scoped>
+@import '../../shared-css/loader.css';
+
 h2 {
     text-align: center;
     font-size: 3em;

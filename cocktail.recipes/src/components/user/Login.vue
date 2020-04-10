@@ -53,7 +53,7 @@ export default {
       this.isLoading = true
     this.post('user', 'login', {username, password }, 'Basic')
     .then(e=> {if (!e.ok) {
-                
+                console.log(e);
                 if (e.status === 401) {
                   alert('Invalid User!');
                 } else {
@@ -63,6 +63,7 @@ export default {
                 throw new Error(e.statusText);
             }
             return e;})
+    .then(this.serializeData)
     
     .then(data=>{
         // console.log(data);
@@ -73,8 +74,8 @@ export default {
         this.$router.push('list');
         
         })
-        .catch(err=>{
-          console.log(err)})
+        // .catch(err=>{
+        //   console.log(err)})
          
         .finally(()=>{this.isLoading = false})
      

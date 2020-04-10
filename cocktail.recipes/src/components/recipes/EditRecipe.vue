@@ -107,22 +107,28 @@ export default {
             }
             let id = this.$route.params.id;
             
-            this.put('appdata', `recipes/${id}`, data, 'Kinvey').then(d=>{
+            this.put('appdata', `recipes/${id}`, data, 'Kinvey')
+            .then(this.serializeData)
+            .then(d=>{
                 let id = d._id
                 this.$router.push({ path: `/details/${id}` }) 
+            }).finally(()=>{
+                this.name ='';
+                this.imageUrl = '';
+                this.ingredients = [];
+                this.methods = '';
             })
 
 
-            this.name ='';
-            this.imageUrl = '';
-            this.ingredients = [];
-            // this.methods = '';
+            
             
         },
         loadRecipe() {
             let id = this.$route.params.id
             console.log(id)
-            this.get('appdata', `recipes/${id}`, 'Kinvey').then(d=>{
+            this.get('appdata', `recipes/${id}`, 'Kinvey')
+            .then(this.serializeData)
+            .then(d=>{
                 
             this.name = d.name;
             this.imageUrl = d.imageUrl;

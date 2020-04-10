@@ -45,9 +45,8 @@ export default {
     methods: {
         getRecipes() {
             this.get('appdata', `recipes?query={"_acl.creator":"${sessionStorage.getItem('userId')}"}`, 'Kinvey')
+                    .then(this.serializeData)
                     .then(d=>{
-                    console.log(d)
-                   
                     if (d.length>0) {
                         this.recipes = d;
                     } else {

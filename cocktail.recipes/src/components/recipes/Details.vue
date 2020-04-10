@@ -45,7 +45,9 @@ export default {
     methods: {
         getRecipeDetails() {
             const id = this.$route.params.id;
-            this.get('appdata', `recipes/${id}`, 'Kinvey').then(d=>{
+            this.get('appdata', `recipes/${id}`, 'Kinvey')
+            .then(this.serializeData)
+            .then(d=>{
                this.imageUrl = d.imageUrl;
                this.name = d.name;
                this.ingredients = d.ingredients;

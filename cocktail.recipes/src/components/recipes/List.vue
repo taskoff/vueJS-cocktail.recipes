@@ -44,9 +44,12 @@ created() {
 },
 methods: {
     getList() {
-       this.get('appdata', 'recipes', 'Kinvey').then(d=>{
+        console.log('fuck')
+       this.get('appdata', 'recipes', 'Kinvey')
+       .then(this.serializeData)
+       .then(d=>{
              this.recipes = d;
-
+            console.log(d)
          })
     }
 },
