@@ -1,6 +1,9 @@
 <template>
     <div class="list-vew-container">
         <h2>All Recipes</h2>
+        <div class="loader-container" :class="{show: isLoading}">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
         <div class="all-recipes-container">
             <div class="recipe-container" v-for="r in recipes" :key="r._id">
                 <div class="img-container">
@@ -36,7 +39,8 @@ data() {
     return {
         imageUrl: '',
         name: '',
-        recipes: null
+        recipes: null,
+        isLoading: false
     }
 },
 created() {
@@ -44,13 +48,13 @@ created() {
 },
 methods: {
     getList() {
-        console.log('fuck')
-       this.get('appdata', 'recipes', 'Kinvey')
+        this.isLoading = true;
+        this.get('appdata', 'recipes', 'Kinvey')
        .then(this.serializeData)
        .then(d=>{
              this.recipes = d;
             console.log(d)
-         })
+         }).finally(()=>{this.isLoading = false})
     }
 },
 filters: {
@@ -64,6 +68,8 @@ filters: {
 </script>
 
 <style scoped>
+@import '../../shared-css/loader.css';
+
 h2 {
     text-align: center;
     font-size: 3em;
@@ -76,6 +82,7 @@ h2 {
     padding: 0 10px;
 }
 .recipe-container {
+    max-width: 25%;
     background-color: rgba(192,192,192, 0.8);
     padding: 20px 20px;
     border-radius: 5px;
@@ -90,7 +97,7 @@ h2 {
 }
 .img-container {
 position: relative;
-min-width: 300px;
+min-width: 295px;
 
 overflow: hidden;
 border-radius: 5px;
@@ -116,6 +123,28 @@ border-radius: 5px;
 }
 .recipe-title {
     padding: 20px 0;
+}
+.details-btn-container a {
+    text-decoration: none;
+    padding: 5px 30px;
+    /* background-color: grey; */
+    background-color: rgba(255,204,153, 1);
+    /* border: 1px solid black; */
+    border-radius: 2px;
+    box-shadow: 0 0 2px black;
+    /* color: rgba(102,0,255, 1); */
+}
+.details-btn-container a:hover {
+    background-color: rgba(255,128,0, 1);
+}
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+.show {
+  display: block;
 }
 
 </style>>

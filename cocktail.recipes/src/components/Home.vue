@@ -7,7 +7,7 @@
      </div>
     
      <div class="start-button">
-         <router-link to="/login">LOGIN</router-link>
+         <router-link to="/list">HERE</router-link>
      </div>
     
  </div>
@@ -64,8 +64,8 @@ export default {
     padding: 20px 0;
 }
 .start-button a:hover {
-    background-color: rgba(255,204,153, 1);
-    color: black;
+    background-color: rgba(255,128,0, 0.8);
+    /* color: black; */
     box-shadow: 5px 5px black;
 }
 .arrow-container {

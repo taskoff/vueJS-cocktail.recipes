@@ -102,7 +102,9 @@ export default {
                 methods: this.methods
             }
             
-            this.post('appdata', 'recipes', data, 'Kinvey').then(d=>{
+            this.post('appdata', 'recipes', data, 'Kinvey')
+            .then(this.serializeData)
+            .then(d=>{
                 console.log(d)
                  this.$router.push(`details/${d._id}`);
             })

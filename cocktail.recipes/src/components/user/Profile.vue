@@ -8,8 +8,8 @@
             </div>
 
             <div class="user-info">
-                <p class="user-name">Username:{{username}}</p>
-                <p class="email">Email:{{email}}</p>
+                <p class="user-name">Username: <span class="username">{{username}}</span></p>
+                <p class="user-email">Email:<span class="email">{{email}}</span></p>
             </div>
             <h3>My recipes:</h3>
             <div class="recipes" >
@@ -77,6 +77,7 @@ img {
     width: 150px;
     height: auto;
 }
+
 .user-info-container {
     width: 50%;
   margin: auto;
@@ -93,6 +94,21 @@ img {
 }
 .user-info p {
     padding: 10px 0;
+}
+.email,
+.username {
+    margin-left: 10px;
+    font-weight: bold;
+}
+.recipes {
+    text-align: left;
+    padding: 10px 30px;
+}
+.recipes ul li button {
+    padding: 2px 10px;
+}
+.recipes ul li {
+    margin-bottom: 10px;
 }
 .hiden {
     display: none;

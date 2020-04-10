@@ -2,7 +2,7 @@
 <div class="site-navi">
     <nav>
         <ul class="navigation">
-            <li v-if="!isAuth">
+            <li >
                 <router-link to="/" exact >HOME</router-link>
             </li>
             <li v-if="isAuth">
