@@ -94,7 +94,7 @@ export default {
       const password = this.password;
       const email = this.email;
       
-
+      this.isLoading = true;
       this.post('user','',{username, password, email}, 'Basic')
       .then(e=> {if (!e.ok) {
                 console.log(e);
@@ -120,9 +120,6 @@ export default {
           this.username = '';
           this.password = '';
           this.rePassword = '';})
-
-
-      
     }
   }
 }
@@ -174,16 +171,20 @@ form label {
   border-radius: 3px;
 }
 .error-input {
-
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
 }
 
 .loader-container {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   display: none;
+  color: grey;
 }
+/* .lds-ring div {
+  border-color: grey;
+} */
 .show {
   display: block;
 }
