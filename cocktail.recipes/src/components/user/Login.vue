@@ -10,12 +10,17 @@
             <div class="form-label-input">
                 <label for="inputUsername">Username</label>
                 <input type="text" id="username" name="username"  v-model="username"  placeholder="Username" >
-                 
+                <template v-if="$v.username.$error">
+                  <div class="error-input" v-if="!$v.username.required">the username is reqired</div>
+                </template>
             </div>
 
             <div class="form-label-input">
               <label for="inputPassword">Password</label>
               <input type="password" id="inputPassword" name="password"  v-model="password" placeholder="Password" >
+              <template v-if="$v.password.$error">
+                <div class="error-input" v-if="!$v.password.required">the Password is required</div>
+              </template>
             </div>
             <div class="log-btn-container">
                 <button type="submit" class="logBtn">Sign In</button>
@@ -32,10 +37,12 @@
 
 <script>
 import requester from '../../mixins/requester2';
-import service from '../../mixins/test.js'
+import service from '../../mixins/test.js';
+import { validationMixin } from 'vuelidate';
+import {required} from 'vuelidate/lib/validators'
 
 export default {
-  mixins: [requester],
+  mixins: [requester,validationMixin],
   data() {
     return {
       username: '',
@@ -43,29 +50,35 @@ export default {
       isLoading: false
     }
   },
+   validations: {
+    username: {required},
+    password: {required},
+  },
   methods: {
     submitHandler() {
       
+      if(this.$v.$invalid) {
+        this.$v.$touch()
+                return
+            }
       const username = this.username;
       const password = this.password;
-      this.username = '';
-      this.password = '';
       this.isLoading = true
-    this.post('user', 'login', {username, password }, 'Basic')
-    .then(e=> {if (!e.ok) {
-                console.log(e);
-                if (e.status === 401) {
-                  alert('Invalid User!');
-                } else {
-                   this.$router.push('*');
-                }
-               
-                throw new Error(e.statusText);
-            }
-            return e;})
-    .then(this.serializeData)
-    
-    .then(data=>{
+      
+      this.post('user', 'login', {username, password }, 'Basic')
+      .then(e=> {if (!e.ok) {
+                  console.log(e);
+                  if (e.status === 401) {
+                    alert('Invalid User!');
+                  } else {
+                     this.$router.push('*');
+                  }
+
+                  throw new Error(e.statusText);
+              }
+              return e;})
+      .then(this.serializeData)
+      .then(data=>{
         // console.log(data);
         
         this.addSessonStorageUserInfo(data);
@@ -77,7 +90,10 @@ export default {
         // .catch(err=>{
         //   console.log(err)})
          
-        .finally(()=>{this.isLoading = false})
+        .finally(()=>{
+          this.username = '';
+          this.password = '';
+          this.isLoading = false})
      
       
     }

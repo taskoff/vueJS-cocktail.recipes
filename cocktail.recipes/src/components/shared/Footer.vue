@@ -1,6 +1,8 @@
 <template>
 <div class="site-footer">
- Footer view
+    <div class="author-info">
+        <p>powared by Taskoff</p>
+    </div>
 </div>
  
 </template>
@@ -11,6 +13,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
+
+.author-info {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5em;
+    padding: 10px;
+    text-align: right;
+}
 
 </style>

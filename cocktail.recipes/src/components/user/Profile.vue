@@ -98,14 +98,26 @@ img {
 .email,
 .username {
     margin-left: 10px;
-    font-weight: bold;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   
 }
 .recipes {
     text-align: left;
     padding: 10px 30px;
+    
 }
 .recipes ul li button {
-    padding: 2px 10px;
+    padding: 5px 20px;
+     border-radius: 2px;
+    cursor: pointer;
+    margin-left: 10px;
+    border: none;
+    box-shadow: 0 0 2px black;
+}
+.recipes ul li button:hover {
+    background-color: rgba(255,128,0, 0.8);
+    border: none;
 }
 .recipes ul li {
     margin-bottom: 10px;

@@ -103,16 +103,18 @@ export default {
             }
             
             this.post('appdata', 'recipes', data, 'Kinvey')
-            .then(this.serializeData)
-            .then(d=>{
+                .then(this.serializeData)
+                .then(d=>{
                 console.log(d)
                  this.$router.push(`details/${d._id}`);
+            }).finally(()=>{
+                this.name ='';
+                this.imageUrl = '';
+                this.ingredients = [];
+                this.methods = '';
             })
 
-            this.name ='';
-            this.imageUrl = '';
-            this.ingredients = [];
-            this.methods = '';
+            
 
         }
         
@@ -186,5 +188,9 @@ form ul li {
 }
 .error-input {
     font-style: italic;
+}
+.addRecipeBtn {
+    min-width: 63%;
+    cursor: pointer;
 }
 </style>

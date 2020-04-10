@@ -86,8 +86,9 @@ export default {
   },
   methods: {
     regHandler() {
-      // this.$v.$touch()
+      
        if(this.$v.$invalid) {
+         this.$v.$touch()
                 return
             }
       const username = this.username;
