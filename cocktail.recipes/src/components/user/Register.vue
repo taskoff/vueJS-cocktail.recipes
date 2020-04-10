@@ -1,5 +1,8 @@
 <template>
   <div class="register-form-view">
+    <div class="loader-container" :class="{show: isLoading}">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
     <div class="">
       <h2>Register</h2>
     </div>
@@ -70,7 +73,8 @@ export default {
       username: '',
       password: '',
       rePassword: '',
-      isAuth: null
+      isAuth: null,
+      isLoading: false
     }
   },
   validations: {
@@ -93,7 +97,7 @@ export default {
         this.$emit('isAuth', true);
         this.addSessonStorageUserInfo(d);
         this.$router.push({path: 'List'});
-        })
+        }).finally(()=>{this.isLoading = false})
     }
   }
 }
@@ -145,6 +149,16 @@ form label {
 .error-input {
 
   font-style: italic;
+}
+
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+.show {
+  display: block;
 }
 
 </style>

@@ -46,8 +46,8 @@ const requester = {
         fetchData(kinveyModul, endPoint, headers) {
             const url = `${rootUrl}/${kinveyModul}/${appKey}/${endPoint}`;
             return fetch(url, headers)
-                .then(this.handleError)
-                .then(this.serializeData)
+                // .then(this.handleError)
+                // .then(this.serializeData)
         },
 
         get(kinveyModul, endPoint, type) {

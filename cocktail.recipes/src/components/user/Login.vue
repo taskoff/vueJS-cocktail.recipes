@@ -1,5 +1,9 @@
 <template>
   <div class="login-form-view">
+    <div class="loader-container" :class="{show: isLoading}">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+
     <h2>Login</h2>
     <div class="form-container">
         <form @submit.prevent="submitHandler">
@@ -35,7 +39,8 @@ export default {
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      isLoading: false
     }
   },
   methods: {
@@ -45,7 +50,21 @@ export default {
       const password = this.password;
       this.username = '';
       this.password = '';
-    this.post('user', 'login', {username, password }, 'Basic').then(data=>{
+      this.isLoading = true
+    this.post('user', 'login', {username, password }, 'Basic')
+    .then(e=> {if (!e.ok) {
+                
+                if (e.status === 401) {
+                  alert('Invalid User!');
+                } else {
+                   this.$router.push('*');
+                }
+               
+                throw new Error(e.statusText);
+            }
+            return e;})
+    
+    .then(data=>{
         // console.log(data);
         
         this.addSessonStorageUserInfo(data);
@@ -54,6 +73,10 @@ export default {
         this.$router.push('list');
         
         })
+        .catch(err=>{
+          console.log(err)})
+         
+        .finally(()=>{this.isLoading = false})
      
       
     }
@@ -62,6 +85,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../../shared-css/loader.css';
+
 h2 {
     text-align: center;
     font-size: 3em;
@@ -100,4 +125,52 @@ form label {
   padding: 5px 10px;
   border-radius: 3px;
 }
+
+/* ============== Loader CSS ========================= */
+
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+.show {
+  display: block;
+}
+/* .lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
 </style>
