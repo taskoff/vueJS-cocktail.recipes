@@ -50,7 +50,7 @@
              </div>
             <input type="submit" value="Edit Recipe" class="addRecipeBtn">
         </form>
-        
+            
       </div>
   </div>
 </template>

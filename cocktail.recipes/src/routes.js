@@ -14,13 +14,7 @@ const routes = [
     {
         path: '/',
         component: Home,
-        beforeEnter: (to, from, next) => {
-            if (service.isLogin) {
-                next('/list')
-            }
-            next()
-          }
-    },
+        },
     {
         path: '/list',
         component: List,

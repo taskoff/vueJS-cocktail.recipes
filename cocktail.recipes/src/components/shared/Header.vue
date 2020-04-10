@@ -21,7 +21,7 @@
                 <router-link to="/profile" >PROFILE</router-link>
             </li>
             <li v-if="isAuth" @click="userLogout">
-                <router-link to="/" exact=""  >LOGOUT</router-link>
+                <a>LOGOUT</a>
             </li>
         </ul>
     </nav>
@@ -30,14 +30,16 @@
 </template>
 
 <script>
-import requester from '../../mixins/requester2'
+import requester from '../../mixins/requester2';
+import service from '../../mixins/test.js';
 
 export default {
     name: 'Home' ,
     mixins: [requester],
     props: {
         isAuth: {
-            type: Boolean
+            type: Boolean,
+            required: true
         }
     },
     methods: {
@@ -47,6 +49,9 @@ export default {
                 sessionStorage.clear();
                 console.log(data);
                 this.$emit('changeIsAuth', false)
+                service.isLogin = false;
+                this.$router.push(`/`);
+
             }).catch(err=>console.log(err))
         }
     }
@@ -90,6 +95,9 @@ export default {
     .router-link-active {
         background-color: grey;
         color: white;
+    }
+    .navigation a {
+        cursor: pointer;
     }
 
 </style>

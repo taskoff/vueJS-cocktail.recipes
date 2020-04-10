@@ -7,21 +7,19 @@
             </div>
             <h3 class="recipe-title">{{name}}</h3>
             <div class="recipe">
-                <p>Ingredients:</p>
+                <h3>Ingredients:</h3>
                 <ul class="ingredients">
-                <li v-for="(i, idx) in ingredients" :key="idx">{{i}}</li>
-                <!-- <li>Tablespoon of sugar</li>
-                <li>50ml golden rum (Captain Morgan's spiced or Havana Club should do)</li>
-                <li>Soda water</li>
-                <li>Handful of strawberries or raspberries (optional, but it gives an extra burst of flavour).</li> -->
+                    <li v-for="(i, idx) in ingredients" :key="idx">{{i}}</li>
                 </ul>
-                <p>Methods:</p>
+                <h3>Methods:</h3>
                 <p class="methods">
                 {{methods}}
                 </p>
 
             </div>
-
+            <div class="profile-button-container" :class="{hiden: !isAuthor}">
+                <p>If you want to edit or remove recipe <router-link to="/profile" class="go-profile-btn" >Go to Profile</router-link> </p>
+            </div>
 
         </div>
     </div>
@@ -37,7 +35,8 @@ export default {
             imageUrl: '',
             name: '',
             ingredients: [],
-            methods: ''
+            methods: '',
+            authorId: ''
         }
     },
     created() {
@@ -51,8 +50,13 @@ export default {
                this.name = d.name;
                this.ingredients = d.ingredients;
                this.methods = d.methods;
+               this.authorId = d._acl.creator;
             })
-        }
+        },
+        
+    },
+    computed: {
+        isAuthor: function() {return this.authorId === sessionStorage.getItem('userId')}
     }
 }
 </script>
@@ -106,5 +110,21 @@ border-radius: 5px;
 ul.ingredients {
     padding: 10px;
     list-style-position: inside;
+}
+.profile-button-container {
+    padding: 20px 0;
+    text-align: center;
+}
+.go-profile-btn {
+    padding: 5px 10px;
+    background-color: rgba(255,204,153, 1);
+    border: none;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.hiden {
+    display: none;
 }
 </style>
