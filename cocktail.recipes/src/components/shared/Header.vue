@@ -45,9 +45,8 @@ export default {
     methods: {
         userLogout() {
             this.post('user', '_logout', {}, 'Kinvey')
-            .then(data=>{
+            .then(()=>{
                 sessionStorage.clear();
-                console.log(data);
                 this.$emit('changeIsAuth', false)
                 service.isLogin = false;
                 this.$router.push(`/`);

@@ -125,7 +125,6 @@ export default {
         },
         loadRecipe() {
             let id = this.$route.params.id
-            console.log(id)
             this.get('appdata', `recipes/${id}`, 'Kinvey')
             .then(this.serializeData)
             .then(d=>{
