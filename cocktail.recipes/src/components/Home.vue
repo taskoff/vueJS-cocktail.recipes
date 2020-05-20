@@ -19,13 +19,7 @@
 <script>
 export default {
     name: 'Home',
-    // props: {
-    //     isAuth: {
-    //         type: Boolean,
-    //         required: true
-    //     }
-    // }
-    
+        
 }
 </script>
 

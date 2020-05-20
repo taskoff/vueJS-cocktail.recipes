@@ -30,11 +30,7 @@ import requester from '../../mixins/requester2'
 export default {
 name: 'List',
 mixins: [requester],
-// props: {
-//     isAuth: {
-//         type: Boolean
-//         }
-// },
+
 data() {
     return {
         imageUrl: '',
@@ -53,7 +49,6 @@ methods: {
        .then(this.serializeData)
        .then(d=>{
              this.recipes = d;
-            console.log(d)
          }).finally(()=>{this.isLoading = false})
     }
 },
@@ -64,7 +59,6 @@ filters: {
 }
 
 }
-// console.log(this.isAuth)
 </script>
 
 <style scoped>
