@@ -32,12 +32,12 @@ export default {
 .start-page-container {
     text-align: center;
     padding-top: 70px;
-    position: relative;
+    /* position: relative; */
 }
 .start-message {
     font-size: 3.5em;
     font-weight: bold;
-    text-shadow: 3px 3px black;
+    text-shadow: 3px 1px black;
     color: rgba(128, 125, 128, 1);
     /* color: grey; */
 }

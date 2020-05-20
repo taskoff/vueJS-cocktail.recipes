@@ -1,4 +1,7 @@
 <template>
+<div>
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+
 <div class="site-navi">
     <nav>
         <ul class="navigation">
@@ -25,6 +28,9 @@
             </li>
         </ul>
     </nav>
+
+</div>
+<label for="nav-toggle" class="nav-toggle-button">Menu</label>
 </div>
  
 </template>
@@ -97,6 +103,46 @@ export default {
     }
     .navigation a {
         cursor: pointer;
+    }
+
+    /* ============================ responsive ================ */
+
+    .nav-toggle {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    }
+    .nav-toggle-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 1.5em;
+        display: none;
+        padding: 0.5em;
+        background-color: rgba(252, 128, 4, 0.500);
+        border-radius: 3px;
+    }
+
+    @media (max-width: 600px) {
+        .nav-toggle-button {
+            display: block;
+        }
+        .site-navi {
+            display: none;
+        }
+        .site-navi ul{
+            display: block;
+            z-index: 2;
+        }
+        .site-logo {
+            display: none;
+        }
+        .nav-toggle:checked+.site-navi {
+            display: block;
+            /* position: absolute; */
+            /* background-color: white; */
+        }
     }
 
 </style>
