@@ -154,6 +154,18 @@ form label {
 .show {
   display: block;
 }
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding-right: 20px;
+    scroll-padding-left: 20px;
+    text-align: center;
+  }
+  .form-container input {
+    min-width: 80%;
+  }
+}
 /* .lds-ring {
   display: inline-block;
   position: relative;

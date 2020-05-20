@@ -30,7 +30,7 @@
     </nav>
 
 </div>
-<label for="nav-toggle" class="nav-toggle-button">Menu</label>
+<label for="nav-toggle" class="nav-toggle-button">&#9776;</label>
 </div>
  
 </template>
@@ -120,7 +120,7 @@ export default {
         font-size: 1.5em;
         display: none;
         padding: 0.5em;
-        background-color: rgba(252, 128, 4, 0.500);
+        background-color: rgba(192,192,192, 0.8);
         border-radius: 3px;
     }
 
@@ -143,6 +143,11 @@ export default {
             /* position: absolute; */
             /* background-color: white; */
         }
+        /* .nav-toggle:checked+.site-navi ul {
+            display: flex;
+            justify-content: left;
+            margin: 0;
+        } */
     }
 
 </style>

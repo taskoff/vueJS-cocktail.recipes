@@ -190,4 +190,19 @@ form label {
   display: block;
 }
 
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding-right: 20px;
+
+  }
+  .form-container input {
+    min-width: 80%;
+  }
+  form div {
+    text-align: center;
+  }
+}
+
+
 </style>
