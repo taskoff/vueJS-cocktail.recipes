@@ -183,7 +183,14 @@ form ul li {
      padding: 0 10px;
      margin-bottom: 2px;
 }
-.addBtn {
+.addBtn,
+.deleteBtn {
+    font-size: 0.8em;
+    box-shadow: 1px 1px black;
+}
+.addBtn:hover,
+.deleteBtn:hover {
+    background-color: rgba(255,204,153, 1);
 }
 
 .hiden {

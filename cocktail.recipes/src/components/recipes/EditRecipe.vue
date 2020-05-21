@@ -25,13 +25,13 @@
                 </div>
                 <div class="form-input">
                     <input type="text" v-model="ingredient" id="add-ingredient" >
-                     <button @click="ingredientHandler" type="button" class="addBtn">&#10010;</button>
+                     <a @click="ingredientHandler" type="button" class="addBtn">&#10010;</a>
                 </div>
            
             </div>
             <div class="ingredient-list">
                 <ul>
-                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <button @click="deleteIngredient(i)" class="deleteBtn">&#9866;</button></li>
+                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <a @click="deleteIngredient(i)" class="deleteBtn">&#9866;</a></li>
                 </ul>
             </div>
             <div class="form-label-input">
@@ -39,7 +39,7 @@
                     <label for="methods">Methods:</label>
                  </div>
                  <div class="form-textarea">
-                     <textarea type="text" v-model="methods" id="methods" rows="8" cols="55"></textarea>
+                     <textarea type="text" v-model="methods" id="methods" ></textarea>
                  </div>
             <template v-if="$v.$error">
                 <div class="error-input" v-if="!$v.name.required">the name is required</div>
@@ -153,7 +153,7 @@ h2 {
     margin: auto;
     background-color: rgba(255,204,153, 0.6);
     padding: 20px;
-    padding-left: 50px;
+    padding-left: 100px;
     border-radius: 5px;
     box-shadow: 0 0 5px black;
 }
@@ -169,6 +169,8 @@ form input {
 }
 form textarea {
     border-radius: 3px;
+    min-width: 60%;
+    min-height: 7em;
 
 }
 form label,
@@ -186,16 +188,22 @@ form ul li {
 }
 .addBtn,
 .deleteBtn {
-    padding: 3px 10px;
+    padding: 2px 5px;
     margin-left: 5px;
     cursor: pointer;
+    border: 1px solid black;
     border-radius: 2px;
      font-size: 1em;
+    box-shadow: 1px 1px black;
+}
+.addBtn:hover,
+.deleteBtn:hover {
+    background-color: rgba(255,204,153, 1);
 }
 .deleteBtn {
      font-size: 1em;
-     padding: 0 10px;
-     margin-bottom: 2px;
+     padding: 0 5px;
+     /* margin-bottom: 2px; */
 }
 
 .hiden {
@@ -206,5 +214,16 @@ form ul li {
 }
 .error-input {
     font-style: italic;
+}
+
+@media(max-width: 600px) {
+    .add-container {
+        max-width: 90%;
+        padding-left: 20px;
+    }
+    form input,
+    textarea {
+        min-width: 80%;
+    }
 }
 </style>

@@ -125,4 +125,10 @@ img {
 .hiden {
     display: none;
 }
+
+@media (max-width: 600px) {
+    .user-info-container {
+        width: 90%;
+    }
+}
 </style>
