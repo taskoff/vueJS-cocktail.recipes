@@ -16,6 +16,6 @@
 ## edit or delete his recipes from profile.
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/profile.jpg)
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/edit.jpg)
+## responsive for phone
 
-
-### Database used Kynvey. 
+### Back end - Kynvey. 
