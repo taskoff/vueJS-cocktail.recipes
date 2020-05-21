@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h2>Add Recipe</h2>
+      <h2>Edit Recipe</h2>
       <div class="add-container">
          <form @submit.prevent="submitHandler">
              <div class="form-label-input">
