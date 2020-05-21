@@ -100,7 +100,7 @@ border-radius: 5px;
 .img-container img {
     
     width: 100%;
-    height: 450px;
+    height: auto;
     display: block;
     position: absolute;
     top: 50%;
@@ -128,5 +128,11 @@ ul.ingredients {
 }
 .hiden {
     display: none;
+}
+
+@media (max-width: 600px) {
+    .recipe-details-container {
+        max-width: 90%;
+    }
 }
 </style>

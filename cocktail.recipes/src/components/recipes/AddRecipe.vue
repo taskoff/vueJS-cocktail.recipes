@@ -25,13 +25,13 @@
                 </div>
                 <div class="form-input">
                     <input type="text" v-model="ingredient" id="add-ingredient" placeholder="100ml Milk">
-                     <button @click="ingredientHandler" type="button" class="addBtn">&#10010;</button>
+                     <a @click="ingredientHandler" type="button" class="addBtn">ADD</a>
                 </div>
            
             </div>
             <div class="ingredient-list">
                 <ul>
-                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <button @click="deleteIngredient(i)" class="deleteBtn">&#9866;</button></li>
+                <li v-for="(ing, i) in ingredients" :key="i">{{ing}} <a @click="deleteIngredient(i)" class="deleteBtn">remove</a></li>
                 </ul>
             </div>
             <div class="form-label-input">
@@ -39,7 +39,7 @@
                     <label for="methods">Methods:</label>
                  </div>
                  <div class="form-textarea">
-                     <textarea type="text" v-model="methods" id="methods" rows="8" cols="55"></textarea>
+                     <textarea type="text" v-model="methods" id="methods"></textarea>
                  </div>
             <template v-if="$v.$error">
                 <div class="error-input" v-if="!$v.name.required">the name is required</div>
@@ -143,10 +143,14 @@ h2 {
     padding: 10px 0;
     
 }
+textarea,
 form input {
     line-height: 2em;
     min-width: 60%;
     border-radius: 3px;
+}
+textarea {
+    min-height: 8em;
 }
 form textarea {
     border-radius: 3px;
@@ -163,20 +167,23 @@ form ul li {
     list-style-position: inside;
 }
 .ingredient-list {
-    min-height: 100px;
+    min-height: 70px;
 }
 .addBtn,
 .deleteBtn {
-    padding: 3px 10px;
+    padding: 5px 5px;
     margin-left: 5px;
-    cursor: pointer;
     border-radius: 2px;
-     font-size: 1em;
+    font-size: 1em;
+    border: 1px solid black;
+    cursor: pointer;
 }
 .deleteBtn {
      font-size: 1em;
      padding: 0 10px;
      margin-bottom: 2px;
+}
+.addBtn {
 }
 
 .hiden {
@@ -189,7 +196,21 @@ form ul li {
     font-style: italic;
 }
 .addRecipeBtn {
-    min-width: 63%;
+    min-width: 60%;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .add-container {
+        max-width: 90%;
+    }
+    textarea,
+    form input,
+    .addRecipeBtn {
+        min-width: 80%;
+    }
+    .add-container {
+        padding-left: 20px;
+    }
 }
 </style>
