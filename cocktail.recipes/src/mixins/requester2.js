@@ -1,6 +1,6 @@
 
-const appKey = 'kid_Hkww3_Mi8';
-const appSecret = 'a86269ac46eb419f8a448bdbeab5d6e6';
+const appKey = 'kid_r1vyAsmoU';
+const appSecret = '17ba31c7a33048c6add0ff81a288f053';
 const rootUrl = 'https://baas.kinvey.com';
 
 
