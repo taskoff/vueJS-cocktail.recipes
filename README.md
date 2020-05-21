@@ -12,7 +12,7 @@
 ## details
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/details.jpg)
 ## user can add recipe
-![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/edit.jpg)
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/add.jpg)
 ## edit or delete his recipes from profile.
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/profile.jpg)
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/edit.jpg)
