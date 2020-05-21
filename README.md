@@ -3,6 +3,19 @@
 # Application for cocktail recipe shared
 ## Home page: 
 ![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/home.jpg)
-### After login or register user can see all shared recipes. Add, edit or delete his recipes.
+## After login 
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/login.jpg)
+## or register 
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/register.jpg)
+## user can see all shared recipes
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/list.jpg)
+## details
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/details.jpg)
+## user can add recipe
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/edit.jpg)
+## edit or delete his recipes from profile.
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/profile.jpg)
+![alt text](https://raw.githubusercontent.com/taskoff/vueJS-cocktail.recipes/master/project.images/edit.jpg)
+
 
 ### Database used Kynvey. 
