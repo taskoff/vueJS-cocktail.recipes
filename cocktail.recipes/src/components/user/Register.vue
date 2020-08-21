@@ -155,8 +155,7 @@ h2 {
 form input {
   line-height: 2em;
     min-width: 60%;
-    border-radius: 3px;
-    /* border: none; */
+    
 }
 
 form label {
@@ -170,6 +169,10 @@ form label {
 .regBtn {
   padding: 5px 10px;
   border-radius: 3px;
+  cursor: pointer;
+}
+.regBtn:hover {
+  box-shadow: 0 0 5px black;
 }
 .error-input {
   font-family: Georgia, 'Times New Roman', Times, serif;

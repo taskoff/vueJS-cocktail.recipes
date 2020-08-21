@@ -147,7 +147,7 @@ textarea,
 form input {
     line-height: 2em;
     min-width: 60%;
-    border-radius: 3px;
+    /* border-radius: 3px; */
 }
 textarea {
     min-height: 8em;
@@ -203,7 +203,8 @@ form ul li {
     font-style: italic;
 }
 .addRecipeBtn {
-    min-width: 60%;
+    padding: 10px 0;
+    min-width: 40%;
     cursor: pointer;
 }
 
