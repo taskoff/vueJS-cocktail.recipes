@@ -3,6 +3,16 @@
       <h2>Edit Recipe</h2>
       <div class="add-container">
          <form @submit.prevent="submitHandler">
+             <div class="img-input">
+                 
+                 <div class="img-container">
+                    <img v-if="imageUrl" :src="imageUrl" alt="Img">
+                </div>
+                 <div>
+                     <button v-if="!imageUrl" class="img-add-btn" @click="addImg">Add Image</button>
+                     <button v-if="imageUrl" class="img-add-btn" @click="deleteImg">Delete Image</button>
+                 </div>
+             </div>
              <div class="form-label-input">
                  <div class="form-label">
                     <label for="name">Name:</label>
@@ -11,14 +21,14 @@
                      <input type="text" v-model="name" id="name" placeholder="Name">
                  </div>
              </div>
-             <div class="form-label-input">
+             <!-- <div class="form-label-input">
                  <div class="form-label">
                     <label for="image-url">Image URL:</label>
                  </div>
                  <div class="form-input">
                      <input type="text" v-model="imageUrl" id="image-url" placeholder="https://....">
                  </div>
-             </div>
+             </div> -->
             <div class="form-label-input ingredients">
                 <div class="form-label">
                     <label for="add-ingredient">Ingredients and quantity:</label>
@@ -58,10 +68,12 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import {required} from 'vuelidate/lib/validators';
-import requester from '../../mixins/requester2'
+import requester from '../../mixins/requester2';
+import addImage from '../../mixins/add-image';
+
 
 export default {
-    mixins: [validationMixin, requester],
+    mixins: [validationMixin, requester, addImage],
     data() {
         return {
             name: '',
@@ -134,6 +146,12 @@ export default {
             this.ingredients = d.ingredients;
             this.methods = d.methods;
             })
+        },
+        addImg(e) {
+            this.uploadImage(e)
+        },
+        deleteImg(){
+            this.imageUrl = '';
         }
         
     }
@@ -214,6 +232,39 @@ form ul li {
 }
 .error-input {
     font-style: italic;
+}
+.img-input {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.img-container {
+    position: relative;
+    max-width: 290px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.img-container::before {
+    display: block;
+    content: '';
+    padding-top: 80%;
+    background-color: white;
+   
+}
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* opacity: 0; */
+}
+.img-add-btn {
+    /* display: inline-block; */
+    padding: 5px 10px;
+    max-width: 70px;
 }
 
 @media(max-width: 600px) {
